@@ -138,7 +138,8 @@ func getBookById(id string) (*book, error) {
 }
 
 func main() {
-	router := gin.Default()
+	gin.SetMode(gin.ReleaseMode)
+	router := gin.New()
 
 	// swagger setting
 	url := ginSwagger.URL("http://localhost:8080/swagger/doc.json")
