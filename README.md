@@ -1,5 +1,7 @@
 # go-gin-api-swagger
 
+[![Test](https://github.com/Baplisca/go-gin-api-swagger/actions/workflows/test.yml/badge.svg)](https://github.com/Baplisca/go-gin-api-swagger/actions/workflows/test.yml)
+
 this repository aims to create simple CRUD RESTful api by Go and Gin with Swagger 2.0
 
 ## Usage
