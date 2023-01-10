@@ -1,6 +1,11 @@
 # go-gin-api-swagger
 
 [![Test](https://github.com/Baplisca/go-gin-api-swagger/actions/workflows/test.yml/badge.svg)](https://github.com/Baplisca/go-gin-api-swagger/actions/workflows/test.yml)
+<a href="https://github.com/Baplisca/go-gin-api-swagger/releases">
+<img
+            src="https://img.shields.io/github/v/release/Baplisca/go-gin-api-swagger"
+            alt="GitHub Releases"/>
+</a>
 
 this repository aims to create simple CRUD RESTful api by Go and Gin with Swagger 2.0
 
