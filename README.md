@@ -6,15 +6,27 @@ this repository aims to create simple CRUD RESTful api by Go and Gin with Swagge
 
 git clone this repo in terminal
 
-> git clone git@github.com:Baplisca/go-gin-api-swagger.git
+```
+git clone git@github.com:Baplisca/go-gin-api-swagger.git
+```
 
 run server app
 
-> go run main.go
+```
+go run main.go
+```
 
 check your browser
 
-> http://localhost:8080/swagger/index.html
+```
+http://localhost:8080/swagger/index.html
+```
+
+## Testing
+
+```
+go test
+```
 
 ## Language
 
