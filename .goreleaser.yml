@@ -1,4 +1,4 @@
-project_name: go-simple-api
+project_name: go-gin-api-swagger
 env:
   - GO111MODULE=on
 before:
@@ -6,7 +6,7 @@ before:
     - go mod tidy
 builds:
   - main: .
-    binary: go-simple-api
+    binary: go-gin-api-swagger
     ldflags:
       - -s -w
       - -X main.Version={{.Version}}
