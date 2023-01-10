@@ -1,19 +1,19 @@
 package main
 
 import (
-	"errors"
-	_ "example/go-simple-api/docs"
-	"github.com/gin-gonic/gin"
-	swaggerFiles "github.com/swaggo/files"
-	"github.com/swaggo/gin-swagger"
 	"net/http"
+	"github.com/gin-gonic/gin"
+	"errors"
+    swaggerFiles "github.com/swaggo/files"
+    "github.com/swaggo/gin-swagger"
+	_ "example/go-simple-api/docs"
 )
 
-type book struct {
-	ID       string `json:"id"`
-	Title    string `json:"title"`
-	Author   string `json:"author"`
-	Quantity int    `json:"quantity"`
+type book struct{
+	ID	string	`json:"id"`
+	Title	string	`json:"title"`
+	Author	string	`json:"author"`
+	Quantity	int	`json:"quantity"`
 }
 
 var books = []book{
@@ -22,6 +22,7 @@ var books = []book{
 	{ID: "3", Title: "War and Peace", Author: "Leo Tolstoy", Quantity: 6},
 }
 
+
 // @Schemes
 // @Description return all Books
 // @Tags books
@@ -29,9 +30,10 @@ var books = []book{
 // @Produce json
 // @Router /books [get]
 // @Success 200
-func getBooks(c *gin.Context) {
+func getBooks(c *gin.Context){
 	c.IndentedJSON(http.StatusOK, books)
 }
+
 
 // @Schemes
 // @Description return specific book
@@ -41,7 +43,7 @@ func getBooks(c *gin.Context) {
 // @Router /books/:id [get]
 // @Success 200
 // @Failure 404
-func bookById(c *gin.Context) {
+func bookById(c *gin.Context){
 	id := c.Param("id")
 	book, err := getBookById(id)
 	if err != nil {
@@ -52,6 +54,7 @@ func bookById(c *gin.Context) {
 	c.IndentedJSON(http.StatusOK, book)
 }
 
+
 // @Schemes
 // @Description register new book
 // @Tags books
@@ -59,15 +62,16 @@ func bookById(c *gin.Context) {
 // @Produce json
 // @Router /books [post]
 // @Success 201
-func createBook(c *gin.Context) {
-	var newBook book
-	if err := c.BindJSON(&newBook); err != nil {
+func createBook(c *gin.Context){
+	var newBook book 
+	if err := c.BindJSON(&newBook); err != nil{
 		return
 	}
 
 	books = append(books, newBook)
 	c.IndentedJSON(http.StatusCreated, newBook)
 }
+
 
 // @Schemes
 // @Description rent a specific book
@@ -78,10 +82,10 @@ func createBook(c *gin.Context) {
 // @Success 201
 // @Failure 400
 // @Failure 404
-func checkoutBook(c *gin.Context) {
+func checkoutBook(c *gin.Context){
 	id, ok := c.GetQuery("id")
 	if !ok {
-		c.IndentedJSON(http.StatusBadRequest, gin.H{"message": "missing id query parameter"})
+		c.IndentedJSON(http.StatusBadRequest, gin.H{"message":"missing id query parameter"})
 		return
 	}
 
@@ -92,8 +96,8 @@ func checkoutBook(c *gin.Context) {
 		return
 	}
 
-	if book.Quantity <= 0 {
-		c.IndentedJSON(http.StatusBadRequest, gin.H{"message": "book is not available"})
+	if book.Quantity <= 0{
+		c.IndentedJSON(http.StatusBadRequest, gin.H{"message":"book is not available"})
 		return
 	}
 	book.Quantity -= 1
@@ -109,10 +113,10 @@ func checkoutBook(c *gin.Context) {
 // @Success 201
 // @Failure 400
 // @Failure 404
-func returnBook(c *gin.Context) {
+func returnBook(c *gin.Context){
 	id, ok := c.GetQuery("id")
 	if !ok {
-		c.IndentedJSON(http.StatusBadRequest, gin.H{"message": "missing id query parameter"})
+		c.IndentedJSON(http.StatusBadRequest, gin.H{"message":"missing id query parameter"})
 		return
 	}
 
@@ -127,8 +131,8 @@ func returnBook(c *gin.Context) {
 	c.IndentedJSON(http.StatusOK, book)
 }
 
-func getBookById(id string) (*book, error) {
-	for i, b := range books {
+func getBookById(id string) (*book, error){
+	for i,b := range books {
 		if b.ID == id {
 			return &books[i], nil
 		}
@@ -137,9 +141,8 @@ func getBookById(id string) (*book, error) {
 	return nil, errors.New("book is not found")
 }
 
-func main() {
-	gin.SetMode(gin.ReleaseMode)
-	router := gin.New()
+func main(){
+	router := gin.Default()
 
 	// swagger setting
 	url := ginSwagger.URL("http://localhost:8080/swagger/doc.json")
